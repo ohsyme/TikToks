@@ -12,7 +12,8 @@ async function scrape(baseUrl){
   await page.setCookie(...cookies)
   await page.goto(baseUrl, {waitUntil: "networkidle2"});
   await page.waitForTimeout(5000)
-  await page.click('#tnvamyfqup9 > div > div:nth-child(4) > div > button');
+  await page.waitForSelector('div > div > div:nth-child(4) > div > button', { timeout: 5000 })
+  await page.click('div > div > div:nth-child(4) > div > button');
   await browser.close();
   return data
 }
