@@ -24,7 +24,7 @@
     await page.focus('html > body div:nth-child(5) > div > form > div > input')
     await page.keyboard.type(LINKTIKTOK)
     console.log("typing link")
-    await delay(3000);
+    await delay(2000);
 
     // /html/body/div[4]/div[5]/div/form/div/div/button
     // /html/body/div[4]/div[5]/div/div/div[1]/div/form/button
@@ -39,7 +39,8 @@
       console.log("Sended 1K viewers")
       console.log("Waiting for 2 Minute to cooldown")
 
-      setTimeout(()=>{scrape(baseUrl)},2*60*1000+3000)
+      delay(2*60*1000+3000)
+      scrape(baseUrl)
     } catch {
       console.log("CoolDown")
 
