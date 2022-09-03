@@ -23,8 +23,23 @@
     await page.waitForSelector('html > body div:nth-child(5) > div > form > div > input')
     await page.focus('html > body div:nth-child(5) > div > form > div > input')
     await page.keyboard.type(Link)
-    
+    await delay(3000);
 
+    // /html/body/div[4]/div[5]/div/form/div/div/button
+    // /html/body/div[4]/div[5]/div/div/div[1]/div/form/button
+    await page.waitForXPath("/html/body/div[4]/div[5]/div/form/div/div/button")
+    let elButton = await page.$x('/html/body/div[4]/div[5]/div/form/div/div/button')
+    elButton[0].click()
+    await delay(3000);
+
+    try {
+      await page.waitForXPath("/html/body/div[4]/div[5]/div/div/div[1]/div/form/button")
+      let elButton2 = await page.$x('/html/body/div[4]/div[5]/div/div/div[1]/div/form/button')
+      elButton2[0].click()
+    } catch {
+      console.log("CoolDown")
+    }
+    
   }
 
   scrape('https://zefoy.com',LINKTIKTOK)
