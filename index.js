@@ -17,14 +17,14 @@
     let el = await page.$x('/html/body/div[4]/div[1]/div[3]/div/div[4]/div/button')
     el[0].click()
 
-    await delay(4000);
+    await delay(500);
     await page.waitForXPath('/html/body/div[4]/div[5]/div/form/div/input');
     
     await page.waitForSelector('html > body div:nth-child(5) > div > form > div > input')
     await page.focus('html > body div:nth-child(5) > div > form > div > input')
     await page.keyboard.type(LINKTIKTOK)
     console.log("typing link")
-    await delay(2000);
+    await delay(600);
 
     // /html/body/div[4]/div[5]/div/form/div/div/button
     // /html/body/div[4]/div[5]/div/div/div[1]/div/form/button
@@ -39,7 +39,7 @@
       console.log("Sended 1K viewers")
       console.log("Waiting for 2 Minute to cooldown")
 
-      delay(2*60*1000+3000)
+      await delay(2*60*1000+3000)
       scrape(baseUrl)
     } catch {
       console.log("CoolDown")
@@ -47,16 +47,16 @@
       await page.waitForSelector("h4")
       let element = await page.$('h4')
       let value = await page.evaluate(el => el.textContent, element)
-      delay(2)
+      await delay(2)
       let minutes = parseInt(value.split(" ")[2])
       let seconds = parseInt(value.split(" ")[4])
 
       let time_to_wait = (minutes * 60 + seconds)
       console.log("Waiting => ", time_to_wait, 'seconds')
-      delay(time_to_wait)
+      await delay(time_to_wait)
       scrape(baseUrl)
     }
-    
+    await browser.close();
   }
 
   scrape('https://zefoy.com')
