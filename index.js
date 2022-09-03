@@ -22,7 +22,7 @@
         // evaluate XPath expression of the target selector (it return array of ElementHandle)
         let elHandle = await page.$x('/html/body/div[4]/div[5]/div/form/div/input');
         // prepare to get the textContent of the selector above (use page.evaluate)
-        let  = await page.evaluate(el => el.value = Link,elHandle);
+        await page.evaluate(el => el.value = Link,elHandle);
     
 
   }
