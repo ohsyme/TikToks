@@ -24,36 +24,37 @@
     await page.focus('html > body div:nth-child(5) > div > form > div > input')
     await page.keyboard.type(LINKTIKTOK)
     console.log("typing link")
-    await delay(3000);
+    await delay(2000);
 
     // /html/body/div[4]/div[5]/div/form/div/div/button
     // /html/body/div[4]/div[5]/div/div/div[1]/div/form/button
     await page.waitForXPath("/html/body/div[4]/div[5]/div/form/div/div/button")
     let elButton = await page.$x('/html/body/div[4]/div[5]/div/form/div/div/button')
     elButton[0].click()
-    await delay(3000);
+    await delay(1000);
 
     try {
-      await page.waitForXPath("/html/body/div[4]/div[5]/div/div/div[1]/div/form/button", 3000)
+      await page.waitForXPath("/html/body/div[4]/div[5]/div/div/div[1]/div/form/button",{timeout:3000})
       let elButton2 = await page.$x('/html/body/div[4]/div[5]/div/div/div[1]/div/form/button')
       elButton2[0].click()
       console.log("Sended 1K viewers")
       console.log("Waiting for 2 Minute to cooldown")
 
-      setTimeout(()=>{scrape(baseUrl)},2*60*1000+3000)
+      delay(2*60*1000+3000)
+      scrape(baseUrl)
     } catch {
       console.log("CoolDown")
 
       await page.waitForSelector("h4")
       let element = await page.$('h4')
       let value = await page.evaluate(el => el.textContent, element)
-      sleep(2)
-      let minutes = int(value.split(" ")[2])
-      let seconds = int(value.split(" ")[4])
+      delay(2)
+      let minutes = parseInt(value.split(" ")[2])
+      let seconds = parseInt(value.split(" ")[4])
 
       let time_to_wait = (minutes * 60 + seconds)
       console.log("Waiting => ", time_to_wait, 'seconds')
-      sleep(time_to_wait)
+      delay(time_to_wait)
       scrape(baseUrl)
     }
     
