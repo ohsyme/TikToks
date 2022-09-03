@@ -1,0 +1,25 @@
+{
+  "name": "tiktoks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohsyme/TikToks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ohsyme/TikToks/issues"
+  },
+  "homepage": "https://github.com/ohsyme/TikToks#readme",
+  "dependencies": {
+    "https-proxy-agent": "^5.0.1",
+    "node-fetch": "^3.2.10",
+    "url-parse": "^1.5.10"
+  }
+}
