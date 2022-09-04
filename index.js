@@ -3,7 +3,6 @@
   const StealthPlugin = require('puppeteer-extra-plugin-stealth');
   const fs = require('fs')
   const tesseract = require("node-tesseract-ocr")
-  const puppeteer = require('puppeteer-extra')
   puppeteer.use(StealthPlugin())
 
 
@@ -16,7 +15,11 @@
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36 OPR/87.0.4390.58')
     await page.setCookie(...cookies)
     await page.goto(baseUrl, {waitUntil: "networkidle2"});
-    await page.screenshot({ path: 'response.png', fullPage: true })
+    await page.waitForSelector('form img');          // Method to ensure that the element is loaded
+    await page.$('form img'); 
+    await page.screenshot({
+      path: 'testim.png'
+      });
     await page.waitForXPath('/html/body/div[4]/div[1]/div[3]/div/div[4]/div/button');
     let el = await page.$x('/html/body/div[4]/div[1]/div[3]/div/div[4]/div/button')
     el[0].click()
@@ -62,6 +65,8 @@
     }
     await browser.close();
   }
+
+  scrape('https://zefoy.com')
 Array.prototype.random = function () {
   return this[Math.floor((Math.random()*this.length))];
 }
@@ -72,12 +77,14 @@ function delay(time) {
   });
 }
 
-let strs = ["q","w","e","r","t","y","u","o","p","a","s","d","f","g","h","j","k","l","i","z","x","c","v","b","n","m","0","1","2","3","4","5","6","7","8","9"]
 function GenerateRandomId(len) {
+  let strs = ["q","w","e","r","t","y","u","o","p","a","s","d","f","g","h","j","k","l","i","z","x","c","v","b","n","m","0","1","2","3","4","5","6","7","8","9"]
   let ids = []
 
   for (let i = 0; i < len; i++) {
-    ids.push(strs.random())
+    
+    let random = strs[Math.floor((Math.random()*strs.length))];
+    ids.push(random)
   }
   return ids.join("")
 }
