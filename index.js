@@ -16,8 +16,8 @@
     await page.setCookie(...cookies)
     await page.goto(baseUrl, {waitUntil: "networkidle2"});
     await page.waitForSelector('form img');          // Method to ensure that the element is loaded
-    await page.$('form img'); 
-    await page.screenshot({
+    let img = await page.$('form img'); 
+    await img.screenshot({
       path: 'testim.png'
       });
     await page.waitForXPath('/html/body/div[4]/div[1]/div[3]/div/div[4]/div/button');
@@ -67,9 +67,7 @@
   }
 
   scrape('https://zefoy.com')
-Array.prototype.random = function () {
-  return this[Math.floor((Math.random()*this.length))];
-}
+
 
 function delay(time) {
   return new Promise(function(resolve) { 
@@ -82,7 +80,6 @@ function GenerateRandomId(len) {
   let ids = []
 
   for (let i = 0; i < len; i++) {
-    
     let random = strs[Math.floor((Math.random()*strs.length))];
     ids.push(random)
   }
