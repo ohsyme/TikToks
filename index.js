@@ -4,7 +4,7 @@
   const Qs = require("qs");
   puppeteer.use(StealthPlugin())
 
-  let LINKTIKTOK = "https://www.tiktok.com/@mau_apaan/video/7138965119588928795?is_from_webapp=1&sender_device=pc&web_id=7129868894336697857"
+  let LINKTIKTOK = "https://www.tiktok.com/@ohsyme/video/7139217961918795035?is_from_webapp=1&sender_device=pc&web_id=7129868894336697857"
   let cookies = [{'url': 'https://zefoy.com',"name":"PHPSESSID","value":"sg34jhi7scm33pl9133jnsfrl4"}]
   async function scrape(baseUrl){
     console.log("opening browser")
