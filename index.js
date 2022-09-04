@@ -8,7 +8,7 @@
 
 
   let LINKTIKTOK = "https://www.tiktok.com/@ohsyme/video/7139217961918795035?is_from_webapp=1&sender_device=pc&web_id=7129868894336697857"
-  let cookies = [{'url': 'https://zefoy.com',"name":"PHPSESSID","value":"sg34jhi7scm33pl9133jnsfrl4"}]
+  let cookies = [{'url': 'https://zefoy.com',"name":"PHPSESSID","value":GenerateRandomId(26)}]
   async function scrape(baseUrl){
     console.log("opening browser")
     const browser = await puppeteer.launch({headless:false,args: ['--no-sandbox']});
@@ -72,9 +72,12 @@ function delay(time) {
   });
 }
 
-function get_proxy(){
-  let readfiletxt = fs.readFileSync('./Proxies.txt', "utf-8")
-  let split = readfiletxt.split('\n')
-  let random1 = split[Math.floor(Math.random()*split.length)];
-  return random1
+let strs = ["q","w","e","r","t","y","u","o","p","a","s","d","f","g","h","j","k","l","i","z","x","c","v","b","n","m","0","1","2","3","4","5","6","7","8","9"]
+function GenerateRandomId(len) {
+  let ids = []
+
+  for (let i = 0; i < len; i++) {
+    ids.push(strs.random())
+  }
+  return ids.join("")
 }
